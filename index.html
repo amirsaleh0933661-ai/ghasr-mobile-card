@@ -1,0 +1,2667 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>قصر موبایل | مهندس کوشکی</title>
+
+    <!-- =========================
+         VAZIRMATN
+    ========================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        :root {
+
+            --bg: #050505;
+
+            --bg-soft: #0b0b0b;
+
+            --card: rgba(18, 18, 18, 0.88);
+
+            --gold: #d8ad55;
+
+            --gold-light: #f0cf82;
+
+            --gold-dark: #9c7430;
+
+            --white: #f5f5f5;
+
+            --muted: #a4a4a4;
+
+            --border:
+                rgba(216, 173, 85, 0.18);
+        }
+
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(216, 173, 85, 0.10),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    180deg,
+                    #030303 0%,
+                    #080808 50%,
+                    #030303 100%
+                );
+
+            color:
+                var(--white);
+
+            font-family:
+                "Vazirmatn",
+                sans-serif;
+
+            padding:
+                20px
+                12px
+                40px;
+        }
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+        }
+
+
+        button {
+
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+
+            width: 100%;
+
+            max-width: 560px;
+
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+
+            text-align: center;
+
+            margin-bottom: 18px;
+        }
+
+
+        .logo-wrap {
+
+            width: 92px;
+
+            height: 92px;
+
+            margin:
+                0 auto
+                12px;
+
+            padding: 4px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold-light),
+                    var(--gold-dark)
+                );
+
+            box-shadow:
+                0 0 35px
+                rgba(216, 173, 85, 0.18);
+        }
+
+
+        .logo-wrap img {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            background: #000;
+        }
+
+
+        .brand-name {
+
+            color:
+                var(--gold-light);
+
+            font-size: 26px;
+
+            font-weight: 900;
+
+            letter-spacing:
+                -0.5px;
+        }
+
+
+        .brand-subtitle {
+
+            margin-top: 5px;
+
+            color:
+                var(--muted);
+
+            font-size: 12px;
+
+            font-weight: 500;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            position: relative;
+
+            overflow: hidden;
+
+            min-height: 220px;
+
+            margin-bottom: 14px;
+
+            border-radius: 24px;
+
+            border:
+                1px solid
+                var(--border);
+
+            background: #101010;
+
+            box-shadow:
+                0 18px 50px
+                rgba(0, 0, 0, 0.45);
+        }
+
+
+        .hero img {
+
+            width: 100%;
+
+            height: 100%;
+
+            min-height: 220px;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+
+        .hero-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            padding: 22px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent 20%,
+                    rgba(0,0,0,0.82) 100%
+                );
+        }
+
+
+        .hero-text {
+
+            width: 100%;
+        }
+
+
+        .hero-title {
+
+            color: #fff;
+
+            font-size: 20px;
+
+            font-weight: 900;
+        }
+
+
+        .hero-description {
+
+            margin-top: 6px;
+
+            color: #d4d4d4;
+
+            font-size: 12px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .card {
+
+            margin-bottom: 14px;
+
+            padding: 18px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(25,25,25,0.92),
+                    rgba(10,10,10,0.92)
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            box-shadow:
+                0 14px 40px
+                rgba(0,0,0,0.28);
+
+            backdrop-filter:
+                blur(15px);
+        }
+
+
+        .card-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 15px;
+
+            color:
+                var(--gold-light);
+
+            font-size: 15px;
+
+            font-weight: 900;
+        }
+
+
+        .card-title i {
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           MANAGER
+        ===================================================== */
+
+        .manager {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .manager-photo {
+
+            width: 82px;
+
+            height: 82px;
+
+            flex:
+                0 0 82px;
+
+            padding: 3px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold-light),
+                    var(--gold-dark)
+                );
+        }
+
+
+        .manager-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+        }
+
+
+        .manager-info {
+
+            min-width: 0;
+        }
+
+
+        .manager-name {
+
+            color:
+                var(--gold-light);
+
+            font-size: 19px;
+
+            font-weight: 900;
+        }
+
+
+        .manager-role {
+
+            margin-top: 5px;
+
+            color:
+                var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           INFO
+        ===================================================== */
+
+        .info-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            min-height: 54px;
+
+            padding:
+                10px
+                4px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.06);
+        }
+
+
+        .info-row:last-child {
+
+            border-bottom: 0;
+        }
+
+
+        .info-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            flex:
+                0 0 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 13px;
+
+            color:
+                var(--gold-light);
+
+            background:
+                rgba(216,173,85,0.08);
+
+            border:
+                1px solid
+                rgba(216,173,85,0.13);
+        }
+
+
+        .info-content {
+
+            min-width: 0;
+
+            flex: 1;
+        }
+
+
+        .info-label {
+
+            color:
+                var(--muted);
+
+            font-size: 10px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .info-value {
+
+            color: #eeeeee;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            line-height: 1.8;
+        }
+
+
+        .phone-link {
+
+            color:
+                var(--gold-light);
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           PAYMENT
+        ===================================================== */
+
+        .payment-person {
+
+            margin-bottom: 13px;
+
+            padding: 13px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.015)
+                );
+
+            border:
+                1px solid
+                rgba(216,173,85,0.16);
+        }
+
+
+        .payment-person-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                10px
+                13px;
+
+            margin-bottom: 10px;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(216,173,85,0.25),
+                    rgba(216,173,85,0.07)
+                );
+
+            border-right:
+                3px solid
+                var(--gold);
+
+            color:
+                var(--gold-light);
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        .payment-line {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            min-height: 48px;
+
+            padding:
+                7px
+                9px;
+
+            margin-bottom: 7px;
+
+            border-radius: 11px;
+
+            background:
+                rgba(0,0,0,0.22);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.045);
+        }
+
+
+        .payment-line:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .payment-line-label {
+
+            min-width: 62px;
+
+            color:
+                var(--muted);
+
+            font-size: 10px;
+
+            font-weight: 600;
+        }
+
+
+        .payment-line-value {
+
+            flex: 1;
+
+            min-width: 0;
+
+            overflow-wrap: anywhere;
+
+            color:
+                var(--gold-light);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing:
+                0.5px;
+
+            text-align: center;
+        }
+
+
+        .copy-btn {
+
+            width: 36px;
+
+            height: 36px;
+
+            flex:
+                0 0 36px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid
+                rgba(216,173,85,0.18);
+
+            border-radius: 10px;
+
+            background:
+                rgba(216,173,85,0.08);
+
+            color:
+                var(--gold-light);
+
+            cursor: pointer;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .copy-btn:hover {
+
+            background:
+                rgba(216,173,85,0.17);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .copy-btn.copied {
+
+            color: #8ff0a4;
+
+            border-color:
+                rgba(143,240,164,0.25);
+
+            background:
+                rgba(143,240,164,0.08);
+        }
+
+
+        .payment-notice {
+
+            padding:
+                12px
+                14px;
+
+            margin-top: 5px;
+
+            border-radius: 14px;
+
+            color: #d9d9d9;
+
+            font-size: 12px;
+
+            line-height: 2;
+
+            background:
+                rgba(216,173,85,0.06);
+
+            border:
+                1px solid
+                rgba(216,173,85,0.13);
+        }
+
+
+        .payment-notice .phone-link {
+
+            font-weight: 800;
+
+            color:
+                var(--gold-light);
+        }
+
+
+        /* =====================================================
+           ACTION BUTTONS
+        ===================================================== */
+
+        .actions {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+
+        .action-btn {
+
+            position: relative;
+
+            overflow: hidden;
+
+            min-height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 10px;
+
+            border-radius: 15px;
+
+            border:
+                1px solid
+                rgba(216,173,85,0.15);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.045),
+                    rgba(255,255,255,0.015)
+                );
+
+            color: #eeeeee;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition:
+                color 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .action-btn i {
+
+            color:
+                var(--gold-light);
+
+            font-size: 18px;
+
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .action-btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            color: #fff;
+        }
+
+
+        .action-btn:hover i {
+
+            transform:
+                scale(1.12);
+        }
+
+
+        /* =====================================================
+           TELEGRAM
+        ===================================================== */
+
+        .action-btn.telegram:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,136,204,0.95),
+                    rgba(0,170,240,0.82)
+                );
+
+            border-color:
+                #0088cc;
+
+            box-shadow:
+                0 10px 28px
+                rgba(0,136,204,0.28);
+        }
+
+
+        .action-btn.telegram:hover i {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           INSTAGRAM
+        ===================================================== */
+
+        .action-btn.instagram:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #833ab4,
+                    #fd1d1d,
+                    #fcb045
+                );
+
+            border-color:
+                #e1306c;
+
+            box-shadow:
+                0 10px 28px
+                rgba(225,48,108,0.28);
+        }
+
+
+        .action-btn.instagram:hover i {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           WHATSAPP
+        ===================================================== */
+
+        .action-btn.whatsapp:hover {
+
+            background:
+                #25D366;
+
+            border-color:
+                #25D366;
+
+            box-shadow:
+                0 10px 28px
+                rgba(37,211,102,0.25);
+        }
+
+
+        .action-btn.whatsapp:hover i {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           WEBSITE
+        ===================================================== */
+
+        .action-btn.website:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1473e6,
+                    #00a8ff
+                );
+
+            border-color:
+                #1473e6;
+
+            box-shadow:
+                0 10px 28px
+                rgba(20,115,230,0.28);
+        }
+
+
+        .action-btn.website:hover i {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           MAP
+        ===================================================== */
+
+        .action-btn.map:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eab308,
+                    #f97316
+                );
+
+            border-color:
+                #f59e0b;
+
+            box-shadow:
+                0 10px 28px
+                rgba(245,158,11,0.25);
+        }
+
+
+        .action-btn.map:hover i {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           PHONE
+        ===================================================== */
+
+        .action-btn.phone:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #16a34a,
+                    #22c55e
+                );
+
+            border-color:
+                #22c55e;
+
+            box-shadow:
+                0 10px 28px
+                rgba(34,197,94,0.28);
+        }
+
+
+        .action-btn.phone:hover i {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           PRIMARY BUTTON
+        ===================================================== */
+
+        .action-btn.primary {
+
+            grid-column:
+                span 2;
+
+            color: #080808;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold-light),
+                    var(--gold)
+                );
+
+            border: none;
+        }
+
+
+        .action-btn.primary i {
+
+            color: #080808;
+        }
+
+
+        .action-btn.primary:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #22c55e,
+                    #16a34a
+                );
+
+            color: #fff;
+
+            box-shadow:
+                0 12px 32px
+                rgba(34,197,94,0.28);
+        }
+
+
+        .action-btn.primary:hover i {
+
+            color: #fff;
+        }
+
+
+        /* =====================================================
+           SAVE / SHARE
+        ===================================================== */
+
+        .action-btn.save:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d8ad55,
+                    #b8862f
+                );
+
+            border-color:
+                var(--gold);
+
+            color: #080808;
+
+            box-shadow:
+                0 10px 28px
+                rgba(216,173,85,0.25);
+        }
+
+
+        .action-btn.save:hover i {
+
+            color: #080808;
+        }
+
+
+        .action-btn.share:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+                );
+
+            border-color:
+                #6366f1;
+
+            box-shadow:
+                0 10px 28px
+                rgba(99,102,241,0.28);
+        }
+
+
+        .action-btn.share:hover i {
+
+            color: #fff;
+        }
+
+
+        /* =====================================================
+           QR
+        ===================================================== */
+
+        .qr-card {
+
+            text-align: center;
+        }
+
+
+        .qr-title {
+
+            color:
+                var(--gold-light);
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        .qr-description {
+
+            margin-top: 5px;
+
+            color:
+                var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.8;
+        }
+
+
+        #qrcode {
+
+            width: 176px;
+
+            height: 176px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                17px auto
+                0;
+
+            padding: 8px;
+
+            border-radius: 18px;
+
+            background: #fff;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,0.35);
+        }
+
+
+        #qrcode img,
+        #qrcode canvas {
+
+            max-width: 100%;
+
+            max-height: 100%;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+
+            padding:
+                15px
+                5px
+                0;
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 10px;
+
+            line-height: 1.8;
+        }
+
+
+        .footer strong {
+
+            color:
+                var(--gold-dark);
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .toast {
+
+            position: fixed;
+
+            z-index: 9999;
+
+            right: 50%;
+
+            bottom: 25px;
+
+            transform:
+                translateX(50%)
+                translateY(20px);
+
+            min-width: 220px;
+
+            max-width:
+                calc(100% - 30px);
+
+            padding:
+                12px
+                16px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(20,20,20,0.96);
+
+            border:
+                1px solid
+                rgba(216,173,85,0.25);
+
+            color: #fff;
+
+            font-size: 12px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 45px
+                rgba(0,0,0,0.45);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .toast.show {
+
+            opacity: 1;
+
+            transform:
+                translateX(50%)
+                translateY(0);
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 480px) {
+
+            body {
+
+                padding:
+                    15px
+                    10px
+                    30px;
+            }
+
+
+            .brand-name {
+
+                font-size: 23px;
+            }
+
+
+            .hero {
+
+                min-height: 190px;
+
+                border-radius: 20px;
+            }
+
+
+            .hero img {
+
+                min-height: 190px;
+            }
+
+
+            .hero-overlay {
+
+                padding: 17px;
+            }
+
+
+            .hero-title {
+
+                font-size: 17px;
+            }
+
+
+            .card {
+
+                padding: 14px;
+
+                border-radius: 19px;
+            }
+
+
+            .manager-photo {
+
+                width: 72px;
+
+                height: 72px;
+
+                flex-basis: 72px;
+            }
+
+
+            .manager-name {
+
+                font-size: 17px;
+            }
+
+
+            .payment-person {
+
+                padding: 10px;
+            }
+
+
+            .payment-person-title {
+
+                font-size: 13px;
+            }
+
+
+            .payment-line-label {
+
+                min-width: 55px;
+            }
+
+
+            .payment-line-value {
+
+                font-size: 11px;
+            }
+
+
+            .actions {
+
+                gap: 8px;
+            }
+
+
+            .action-btn {
+
+                min-height: 55px;
+
+                font-size: 11px;
+            }
+
+
+            #qrcode {
+
+                width: 165px;
+
+                height: 165px;
+            }
+        }
+
+
+        /* =====================================================
+           TOUCH DEVICES
+           روی موبایل hover واقعی نداریم.
+           این بخش باعث می‌شود رنگ‌ها هنگام لمس هم بیایند.
+        ===================================================== */
+
+        @media (hover: none) {
+
+            .action-btn:active {
+
+                transform:
+                    scale(0.97);
+            }
+
+
+            .action-btn.telegram:active {
+
+                background:
+                    #0088cc;
+
+                border-color:
+                    #0088cc;
+            }
+
+
+            .action-btn.instagram:active {
+
+                background:
+                    linear-gradient(
+                        135deg,
+                        #833ab4,
+                        #fd1d1d,
+                        #fcb045
+                    );
+
+                border-color:
+                    #e1306c;
+            }
+
+
+            .action-btn.whatsapp:active {
+
+                background:
+                    #25D366;
+
+                border-color:
+                    #25D366;
+            }
+
+
+            .action-btn.website:active {
+
+                background:
+                    #1473e6;
+
+                border-color:
+                    #1473e6;
+            }
+
+
+            .action-btn.map:active {
+
+                background:
+                    #f59e0b;
+
+                border-color:
+                    #f59e0b;
+            }
+
+
+            .action-btn.primary:active {
+
+                background:
+                    #16a34a;
+
+                color: #fff;
+            }
+
+
+            .action-btn.primary:active i {
+
+                color: #fff;
+            }
+
+
+            .action-btn.share:active {
+
+                background:
+                    #6366f1;
+
+                border-color:
+                    #6366f1;
+            }
+
+
+            .action-btn.save:active {
+
+                background:
+                    var(--gold);
+
+                color: #080808;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- =====================================================
+         BRAND
+    ====================================================== -->
+
+    <header class="brand">
+
+        <div class="logo-wrap">
+
+            <img
+                src="assets/logo.png"
+                alt="لوگوی قصر موبایل"
+            >
+
+        </div>
+
+
+        <div class="brand-name">
+            قصر موبایل
+        </div>
+
+
+        <div class="brand-subtitle">
+            فروش موبایل، لوازم جانبی و تجهیزات دیجیتال
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <img
+            src="assets/hero-banner.jpg"
+            alt="قصر موبایل"
+        >
+
+
+        <div class="hero-overlay">
+
+            <div class="hero-text">
+
+                <div class="hero-title">
+                    انتخاب مطمئن، قیمت منصفانه، خدمات حرفه‌ای
+                </div>
+
+
+                <div class="hero-description">
+                    مرجع خرید موبایل، لوازم جانبی و تجهیزات دیجیتال در سبزوار.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MANAGER
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-user-tie"></i>
+
+            مدیریت مجموعه
+
+        </div>
+
+
+        <div class="manager">
+
+            <div class="manager-photo">
+
+                <img
+                    src="assets/koushki.jpg"
+                    alt="مهندس کوشکی"
+                >
+
+            </div>
+
+
+            <div class="manager-info">
+
+                <div class="manager-name">
+                    مهندس کوشکی
+                </div>
+
+
+                <div class="manager-role">
+
+                    مدیریت مجموعه قصر موبایل
+
+                    <br>
+
+                    فروش موبایل، لوازم جانبی و تجهیزات دیجیتال
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STORE INFORMATION
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-store"></i>
+
+            اطلاعات فروشگاه
+
+        </div>
+
+
+        <!-- ADDRESS -->
+
+        <a
+            href="https://nshn.ir/95_b1v25GdW1LQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="info-row"
+        >
+
+            <div class="info-icon">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+            </div>
+
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    آدرس
+                </div>
+
+
+                <div class="info-value">
+                    سبزوار، روبروی قائم ۸
+                </div>
+
+            </div>
+
+
+            <i
+                class="fa-solid fa-chevron-left"
+                style="
+                    color:#777;
+                    font-size:11px;
+                "
+            ></i>
+
+        </a>
+
+
+        <!-- MOBILE -->
+
+        <a
+            href="tel:09372561230"
+            class="info-row"
+        >
+
+            <div class="info-icon">
+
+                <i class="fa-solid fa-mobile-screen-button"></i>
+
+            </div>
+
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    شماره همراه
+                </div>
+
+
+                <div
+                    class="info-value phone-link"
+                    dir="ltr"
+                >
+
+                    09372561230
+
+                    <i
+                        class="fa-solid fa-phone"
+                        style="
+                            font-size:10px;
+                            margin-right:5px;
+                        "
+                    ></i>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- SHOP PHONE -->
+
+        <a
+            href="tel:05144244006"
+            class="info-row"
+        >
+
+            <div class="info-icon">
+
+                <i class="fa-solid fa-phone"></i>
+
+            </div>
+
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    تلفن فروشگاه
+                </div>
+
+
+                <div
+                    class="info-value phone-link"
+                    dir="ltr"
+                >
+
+                    44244006
+
+                    <i
+                        class="fa-solid fa-phone"
+                        style="
+                            font-size:10px;
+                            margin-right:5px;
+                        "
+                    ></i>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- HOURS -->
+
+        <div class="info-row">
+
+            <div class="info-icon">
+
+                <i class="fa-regular fa-clock"></i>
+
+            </div>
+
+
+            <div class="info-content">
+
+                <div class="info-label">
+                    ساعت کاری
+                </div>
+
+
+                <div class="info-value">
+
+                    شنبه تا پنجشنبه
+
+                    <br>
+
+                    صبح ۹:۰۰ تا ۱۴:۰۰
+
+                    <br>
+
+                    عصر ۱۷:۰۰ تا ۲۲:۰۰
+
+                    <br>
+
+                    <span style="color:#888;">
+                        جمعه تعطیل
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PAYMENT
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-building-columns"></i>
+
+            اطلاعات پرداخت
+
+        </div>
+
+
+        <!-- FATEMEH -->
+
+        <div class="payment-person">
+
+            <div class="payment-person-title">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                فاطمه اندیشمند
+
+            </div>
+
+
+            <div class="payment-line">
+
+                <div class="payment-line-label">
+                    شماره کارت
+                </div>
+
+
+                <div
+                    class="payment-line-value"
+                    dir="ltr"
+                >
+                    0000 0000 0000 0000
+                </div>
+
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyPayment(
+                        '0000000000000000',
+                        this,
+                        'شماره کارت فاطمه اندیشمند'
+                    )"
+                    aria-label="کپی شماره کارت"
+                >
+
+                    <i class="fa-regular fa-copy"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="payment-line">
+
+                <div class="payment-line-label">
+                    شماره شبا
+                </div>
+
+
+                <div
+                    class="payment-line-value"
+                    dir="ltr"
+                >
+                    IR000000000000000000000000
+                </div>
+
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyPayment(
+                        'IR000000000000000000000000',
+                        this,
+                        'شماره شبا فاطمه اندیشمند'
+                    )"
+                    aria-label="کپی شماره شبا"
+                >
+
+                    <i class="fa-regular fa-copy"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SAJJAD -->
+
+        <div class="payment-person">
+
+            <div class="payment-person-title">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                سجاد کوشکی
+
+            </div>
+
+
+            <div class="payment-line">
+
+                <div class="payment-line-label">
+                    شماره کارت
+                </div>
+
+
+                <div
+                    class="payment-line-value"
+                    dir="ltr"
+                >
+                    0000 0000 0000 0000
+                </div>
+
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyPayment(
+                        '0000000000000000',
+                        this,
+                        'شماره کارت سجاد کوشکی'
+                    )"
+                    aria-label="کپی شماره کارت"
+                >
+
+                    <i class="fa-regular fa-copy"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="payment-line">
+
+                <div class="payment-line-label">
+                    شماره شبا
+                </div>
+
+
+                <div
+                    class="payment-line-value"
+                    dir="ltr"
+                >
+                    IR000000000000000000000000
+                </div>
+
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyPayment(
+                        'IR000000000000000000000000',
+                        this,
+                        'شماره شبا سجاد کوشکی'
+                    )"
+                    aria-label="کپی شماره شبا"
+                >
+
+                    <i class="fa-regular fa-copy"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- JAVAD -->
+
+        <div class="payment-person">
+
+            <div class="payment-person-title">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                جواد کوشکی
+
+            </div>
+
+
+            <div class="payment-line">
+
+                <div class="payment-line-label">
+                    شماره کارت
+                </div>
+
+
+                <div
+                    class="payment-line-value"
+                    dir="ltr"
+                >
+                    0000 0000 0000 0000
+                </div>
+
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyPayment(
+                        '0000000000000000',
+                        this,
+                        'شماره کارت جواد کوشکی'
+                    )"
+                    aria-label="کپی شماره کارت"
+                >
+
+                    <i class="fa-regular fa-copy"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECEIPT -->
+
+        <div class="payment-notice">
+
+            لطفاً پس از پرداخت، رسید به شماره
+
+            <a
+                href="tel:09372561230"
+                class="phone-link"
+                dir="ltr"
+            >
+                09372561230
+            </a>
+
+            مهندس کوشکی ارسال شود!
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ACTION BUTTONS
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            ارتباط سریع
+
+        </div>
+
+
+        <div class="actions">
+
+
+            <!-- MAP -->
+
+            <a
+                href="https://nshn.ir/95_b1v25GdW1LQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="action-btn map"
+            >
+
+                <i class="fa-solid fa-location-arrow"></i>
+
+                مسیریابی
+
+            </a>
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                href="https://wa.me/989372561230"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="action-btn whatsapp"
+            >
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                واتساپ
+
+            </a>
+
+
+            <!-- CALL -->
+
+            <a
+                href="tel:09372561230"
+                class="action-btn primary phone"
+            >
+
+                <i class="fa-solid fa-phone-volume"></i>
+
+                تماس مستقیم
+
+            </a>
+
+
+            <!-- WEBSITE -->
+
+            <a
+                href="https://ghasremobile7.ir/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="action-btn website"
+            >
+
+                <i class="fa-solid fa-globe"></i>
+
+                وب‌سایت
+
+            </a>
+
+
+            <!-- INSTAGRAM -->
+
+            <a
+                href="https://www.instagram.com/Ghasremobile_sabzevar/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="action-btn instagram"
+            >
+
+                <i class="fa-brands fa-instagram"></i>
+
+                اینستاگرام
+
+            </a>
+
+
+            <!-- TELEGRAM -->
+
+            <a
+                href="https://t.me/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="action-btn telegram"
+            >
+
+                <i class="fa-brands fa-telegram"></i>
+
+                کانال تلگرام
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SAVE / SHARE
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="actions">
+
+
+            <button
+                type="button"
+                class="action-btn save"
+                onclick="saveContact()"
+            >
+
+                <i class="fa-solid fa-address-card"></i>
+
+                ذخیره مخاطب
+
+            </button>
+
+
+            <button
+                type="button"
+                class="action-btn share"
+                onclick="sharePage()"
+            >
+
+                <i class="fa-solid fa-share-nodes"></i>
+
+                اشتراک‌گذاری
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QR
+    ====================================================== -->
+
+    <section class="card qr-card">
+
+        <div class="qr-title">
+            QR کد قصر موبایل
+        </div>
+
+
+        <div class="qr-description">
+
+            برای باز کردن کارت دیجیتال، QR کد را اسکن کنید.
+
+        </div>
+
+
+        <div id="qrcode"></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <strong>
+            قصر موبایل
+        </strong>
+
+        <br>
+
+        سبزوار، روبروی قائم ۸
+
+        <br>
+
+        © تمامی حقوق محفوظ است.
+
+    </footer>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<!-- =====================================================
+     QR CODE
+====================================================== -->
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+></script>
+
+
+<script>
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        clearTimeout(
+            window.toastTimer
+        );
+
+
+        window.toastTimer =
+            setTimeout(
+                function () {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2200
+            );
+    }
+
+
+    /* =====================================================
+       COPY PAYMENT
+    ===================================================== */
+
+    async function copyPayment(
+        value,
+        button,
+        label
+    ) {
+
+        try {
+
+            if (
+                navigator.clipboard &&
+                window.isSecureContext
+            ) {
+
+                await navigator.clipboard.writeText(
+                    value
+                );
+
+            }
+
+            else {
+
+                const textarea =
+                    document.createElement(
+                        "textarea"
+                    );
+
+
+                textarea.value =
+                    value;
+
+
+                textarea.style.position =
+                    "fixed";
+
+
+                textarea.style.opacity =
+                    "0";
+
+
+                textarea.style.pointerEvents =
+                    "none";
+
+
+                document.body.appendChild(
+                    textarea
+                );
+
+
+                textarea.focus();
+
+                textarea.select();
+
+
+                document.execCommand(
+                    "copy"
+                );
+
+
+                textarea.remove();
+
+            }
+
+
+            const icon =
+                button.querySelector(
+                    "i"
+                );
+
+
+            button.classList.add(
+                "copied"
+            );
+
+
+            icon.className =
+                "fa-solid fa-check";
+
+
+            showToast(
+                label + " کپی شد ✓"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    button.classList.remove(
+                        "copied"
+                    );
+
+
+                    icon.className =
+                        "fa-regular fa-copy";
+
+                },
+                1800
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Copy error:",
+                error
+            );
+
+
+            showToast(
+                "کپی انجام نشد؛ لطفاً دوباره تلاش کنید"
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SAVE CONTACT
+    ===================================================== */
+
+    function saveContact() {
+
+        const vCard =
+`BEGIN:VCARD
+VERSION:3.0
+FN:مهندس کوشکی - قصر موبایل
+ORG:قصر موبایل
+TITLE:مدیریت مجموعه
+TEL;TYPE=CELL:09372561230
+TEL;TYPE=WORK,VOICE:05144244006
+ADR;TYPE=WORK:;;سبزوار، روبروی قائم ۸;;;
+URL:https://ghasremobile7.ir/
+NOTE:فروش موبایل، لوازم جانبی و تجهیزات دیجیتال
+END:VCARD`;
+
+
+        const blob =
+            new Blob(
+                [vCard],
+                {
+                    type:
+                        "text/vcard;charset=utf-8"
+                }
+            );
+
+
+        const url =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            url;
+
+
+        link.download =
+            "Ghasr-Mobile-Koushki.vcf";
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        URL.revokeObjectURL(
+            url
+        );
+
+
+        showToast(
+            "مخاطب آماده ذخیره شد ✓"
+        );
+
+    }
+
+
+    /* =====================================================
+       SHARE
+    ===================================================== */
+
+    async function sharePage() {
+
+        const shareData = {
+
+            title:
+                "قصر موبایل",
+
+            text:
+                "کارت دیجیتال قصر موبایل - مهندس کوشکی",
+
+            url:
+                window.location.href
+        };
+
+
+        try {
+
+            if (
+                navigator.share
+            ) {
+
+                await navigator.share(
+                    shareData
+                );
+
+            }
+
+            else {
+
+                if (
+                    navigator.clipboard
+                ) {
+
+                    await navigator.clipboard.writeText(
+                        window.location.href
+                    );
+
+                    showToast(
+                        "لینک کارت کپی شد ✓"
+                    );
+
+                }
+
+                else {
+
+                    showToast(
+                        "اشتراک‌گذاری در این مرورگر پشتیبانی نمی‌شود"
+                    );
+
+                }
+
+            }
+
+        }
+
+        catch (error) {
+
+            if (
+                error &&
+                error.name !==
+                "AbortError"
+            ) {
+
+                showToast(
+                    "اشتراک‌گذاری انجام نشد"
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       QR
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const qr =
+                document.getElementById(
+                    "qrcode"
+                );
+
+
+            if (
+                qr &&
+                typeof QRCode !==
+                "undefined"
+            ) {
+
+                new QRCode(
+                    qr,
+                    {
+
+                        text:
+                            "https://ghasremobile7.ir/",
+
+                        width:
+                            160,
+
+                        height:
+                            160,
+
+                        colorDark:
+                            "#000000",
+
+                        colorLight:
+                            "#ffffff",
+
+                        correctLevel:
+                            QRCode.CorrectLevel.H
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
