@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>محاسبه اقساط | قصر موبایل</title>
+
+    <meta
+        name="description"
+        content="محاسبه اقساط خرید از قصر موبایل"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="assets/logo.png"
+    >
+
+    <!-- Vazirmatn -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f3d675;
+            --gold-dark: #9f7b17;
+
+            --black: #050505;
+            --black-2: #0c0c0c;
+            --black-3: #111111;
+
+            --white: #ffffff;
+            --text: #f5f5f5;
+            --muted: #aaa;
+
+            --glass: rgba(255,255,255,0.045);
+            --border: rgba(212,175,55,0.22);
+
+            --danger: #ff5c5c;
+            --success: #55d98a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Vazirmatn", sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 20% 15%,
+                    rgba(212,175,55,0.10),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 80% 85%,
+                    rgba(212,175,55,0.08),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    145deg,
+                    #020202,
+                    #0a0a0a 45%,
+                    #020202
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 35px 16px;
+
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: rgba(212,175,55,0.04);
+
+            filter: blur(90px);
+
+            top: -220px;
+            right: -180px;
+
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            background: rgba(212,175,55,0.035);
+
+            filter: blur(100px);
+
+            bottom: -180px;
+            left: -150px;
+
+            pointer-events: none;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 720px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-button {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 9px;
+
+            margin-bottom: 18px;
+
+            padding: 10px 17px;
+
+            color: #d9d9d9;
+
+            text-decoration: none;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 13px;
+
+            font-size: 13px;
+
+            transition: 0.25s ease;
+        }
+
+        .back-button:hover {
+            color: var(--gold-light);
+
+            border-color: rgba(212,175,55,0.35);
+
+            transform: translateX(3px);
+        }
+
+        /* =========================
+           MAIN CARD
+        ========================= */
+
+        .calculator-card {
+            position: relative;
+
+            padding: 30px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.065),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 30px 90px rgba(0,0,0,0.60),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+
+            overflow: visible;
+        }
+
+        .calculator-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 18%;
+
+            width: 64%;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(243,214,117,0.75),
+                    transparent
+                );
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .logo-wrapper {
+            width: 76px;
+            height: 76px;
+
+            margin: 0 auto 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,0.18),
+                    rgba(212,175,55,0.035)
+                );
+
+            border: 1px solid rgba(212,175,55,0.32);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.35);
+        }
+
+        .logo-wrapper img {
+            width: 58px;
+            height: 58px;
+
+            object-fit: contain;
+
+            border-radius: 14px;
+        }
+
+        .header h1 {
+            font-size: 27px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    var(--gold-light)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .header p {
+            color: #a9a9a9;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-section {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .field {
+            position: relative;
+        }
+
+        .field-label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 8px;
+
+            color: #e8e8e8;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .field-label i {
+            color: var(--gold);
+
+            width: 17px;
+
+            text-align: center;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            height: 54px;
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            background:
+                rgba(0,0,0,0.38);
+
+            color: #fff;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.25s ease;
+        }
+
+        input {
+            padding: 0 17px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: rgba(212,175,55,0.60);
+
+            box-shadow:
+                0 0 0 3px rgba(212,175,55,0.08);
+        }
+
+        input::placeholder {
+            color: #777;
+        }
+
+        /* =========================
+           MONEY INPUT
+        ========================= */
+
+        .money-input {
+            padding-left: 67px;
+        }
+
+        .money-unit {
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #a9a9a9;
+
+            font-size: 12px;
+
+            pointer-events: none;
+        }
+
+        /* =========================
+           NORMAL SELECT
+        ========================= */
+
+        .normal-select-wrapper {
+            position: relative;
+        }
+
+        .normal-select-wrapper::after {
+            content: "\f078";
+
+            font-family: "Font Awesome 6 Free";
+
+            font-weight: 900;
+
+            position: absolute;
+
+            left: 17px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--gold);
+
+            font-size: 11px;
+
+            pointer-events: none;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+
+            padding: 0 17px;
+            padding-left: 45px;
+
+            cursor: pointer;
+        }
+
+        select option {
+            background: #111;
+
+            color: white;
+        }
+
+        /* =========================
+           CUSTOM PRODUCT SELECT
+        ========================= */
+
+        .custom-select {
+            position: relative;
+
+            z-index: 20;
+        }
+
+        .select-trigger {
+            width: 100%;
+
+            height: 54px;
+
+            padding: 0 15px;
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            background:
+                rgba(0,0,0,0.38);
+
+            display: flex;
+
+            align-items: center;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+
+            outline: none;
+        }
+
+        .select-trigger:hover,
+        .custom-select.open .select-trigger {
+            border-color: rgba(212,175,55,0.60);
+
+            box-shadow:
+                0 0 0 3px rgba(212,175,55,0.07);
+        }
+
+        .selected-icon {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            margin-left: 11px;
+
+            color: var(--gold-light);
+
+            background:
+                rgba(212,175,55,0.10);
+
+            border: 1px solid rgba(212,175,55,0.18);
+
+            font-size: 17px;
+        }
+
+        .selected-text {
+            flex: 1;
+
+            font-size: 14px;
+
+            color: #fff;
+
+            font-weight: 500;
+        }
+
+        .custom-arrow {
+            color: var(--gold);
+
+            font-size: 11px;
+
+            transition: transform 0.25s ease;
+        }
+
+        .custom-select.open .custom-arrow {
+            transform: rotate(180deg);
+        }
+
+        .select-options {
+            position: absolute;
+
+            top: calc(100% + 8px);
+
+            right: 0;
+            left: 0;
+
+            padding: 7px;
+
+            background:
+                rgba(13,13,13,0.98);
+
+            border:
+                1px solid rgba(212,175,55,0.28);
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.65);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform:
+                translateY(-7px)
+                scale(0.98);
+
+            transition: 0.20s ease;
+
+            pointer-events: none;
+        }
+
+        .custom-select.open .select-options {
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translateY(0)
+                scale(1);
+
+            pointer-events: auto;
+        }
+
+        .select-option {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 11px;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .select-option:hover {
+            background:
+                rgba(212,175,55,0.08);
+        }
+
+        .select-option.active {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(212,175,55,0.12),
+                    rgba(212,175,55,0.04)
+                );
+        }
+
+        .option-icon {
+            width: 38px;
+            height: 38px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            color: var(--gold-light);
+
+            background:
+                rgba(212,175,55,0.08);
+
+            border: 1px solid rgba(212,175,55,0.15);
+
+            font-size: 18px;
+        }
+
+        .option-content {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 2px;
+        }
+
+        .option-name {
+            color: #fff;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .option-description {
+            color: #858585;
+
+            font-size: 10px;
+        }
+
+        /* =========================
+           TWO COLUMNS
+        ========================= */
+
+        .two-columns {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+        /* =========================
+           DOWN PAYMENT
+        ========================= */
+
+        .down-payment-note {
+            margin-top: 7px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #8e8e8e;
+
+            font-size: 10px;
+        }
+
+        .down-payment-note i {
+            color: var(--gold);
+        }
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error-message {
+            display: none;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 13px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,92,92,0.08);
+
+            border:
+                1px solid rgba(255,92,92,0.20);
+
+            color: #ff8585;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .error-message.show {
+            display: flex;
+        }
+
+        /* =========================
+           WARNING MODAL
+        ========================= */
+
+        .warning-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0,0,0,0.72);
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+        .warning-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .warning-modal {
+            width: 100%;
+            max-width: 440px;
+
+            padding: 24px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid rgba(212,175,55,0.32);
+
+            box-shadow:
+                0 30px 90px rgba(0,0,0,0.75),
+                inset 0 1px 0 rgba(255,255,255,0.06);
+
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+
+            transform: translateY(12px) scale(0.97);
+
+            transition:
+                transform 0.25s ease;
+        }
+
+        .warning-overlay.show .warning-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .warning-icon {
+            width: 52px;
+            height: 52px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            color: var(--gold-light);
+
+            background:
+                rgba(212,175,55,0.10);
+
+            border:
+                1px solid rgba(212,175,55,0.25);
+
+            font-size: 20px;
+        }
+
+        .warning-title {
+            margin-bottom: 9px;
+
+            text-align: center;
+
+            color: #fff;
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .warning-text {
+            color: #a9a9a9;
+
+            font-size: 12px;
+            line-height: 2;
+
+            text-align: center;
+        }
+
+        .warning-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .warning-button {
+            height: 48px;
+
+            border-radius: 13px;
+
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                filter 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .warning-button:hover {
+            transform: translateY(-1px);
+        }
+
+        .warning-button.continue {
+            border: 0;
+
+            color: #111;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4d875,
+                    #c9a52e
+                );
+
+            box-shadow:
+                0 10px 25px rgba(212,175,55,0.16);
+        }
+
+        .warning-button.continue:hover {
+            filter: brightness(1.06);
+        }
+
+        .warning-button.cancel {
+            color: #ddd;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid rgba(255,255,255,0.10);
+        }
+
+        .warning-button.cancel:hover {
+            border-color: rgba(212,175,55,0.35);
+            color: var(--gold-light);
+        }
+
+        @media (max-width: 600px) {
+
+            .warning-modal {
+                padding: 21px 17px;
+                border-radius: 19px;
+            }
+
+            .warning-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .warning-button.continue {
+                order: 1;
+            }
+
+            .warning-button.cancel {
+                order: 2;
+            }
+
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .calculate-button {
+            width: 100%;
+
+            height: 58px;
+
+            margin-top: 3px;
+
+            border: 0;
+
+            border-radius: 16px;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            color: #111;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4d875,
+                    #c9a52e
+                );
+
+            box-shadow:
+                0 12px 30px rgba(212,175,55,0.18);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                filter 0.2s ease;
+        }
+
+        .calculate-button i {
+            margin-left: 7px;
+        }
+
+        .calculate-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 18px 35px rgba(212,175,55,0.24);
+
+            filter: brightness(1.05);
+        }
+
+        .calculate-button:active {
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESULT
+        ========================= */
+
+        .result {
+            display: none;
+
+            margin-top: 24px;
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(212,175,55,0.09),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(212,175,55,0.26);
+
+            animation:
+                resultAppear 0.35s ease;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        @keyframes resultAppear {
+            from {
+                opacity: 0;
+
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+        .result-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding-bottom: 15px;
+
+            margin-bottom: 15px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .result-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--gold-light);
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+        .result-title i {
+            font-size: 15px;
+        }
+
+        .result-badge {
+            padding: 5px 9px;
+
+            border-radius: 8px;
+
+            color: #d7d7d7;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            font-size: 10px;
+        }
+
+        .result-main {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 12px 0 18px;
+
+            text-align: center;
+        }
+
+        .monthly-label {
+            color: #999;
+
+            font-size: 11px;
+
+            margin-bottom: 8px;
+        }
+
+        .monthly-value {
+            font-size: 31px;
+
+            line-height: 1.3;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    var(--gold-light)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .monthly-unit {
+            margin-top: 4px;
+
+            color: #a0a0a0;
+
+            font-size: 11px;
+        }
+
+        .result-details {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 9px;
+        }
+
+        .detail-box {
+            padding: 12px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(0,0,0,0.24);
+
+            border:
+                1px solid rgba(255,255,255,0.055);
+        }
+
+        .detail-label {
+            display: block;
+
+            color: #777;
+
+            font-size: 9px;
+
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            display: block;
+
+            color: #eee;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        .result-note {
+            margin-top: 13px;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 7px;
+
+            color: #767676;
+
+            font-size: 9px;
+
+            line-height: 1.8;
+        }
+
+        .result-note i {
+            color: var(--gold);
+
+            margin-top: 3px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #666;
+
+            font-size: 10px;
+
+            line-height: 1.8;
+        }
+
+        .footer span {
+            color: var(--gold-dark);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 18px 12px;
+                align-items: flex-start;
+            }
+
+            .page {
+                padding-top: 5px;
+            }
+
+            .calculator-card {
+                padding: 22px 17px;
+
+                border-radius: 23px;
+            }
+
+            .header {
+                margin-bottom: 23px;
+            }
+
+            .logo-wrapper {
+                width: 67px;
+                height: 67px;
+            }
+
+            .logo-wrapper img {
+                width: 51px;
+                height: 51px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .header p {
+                font-size: 11px;
+            }
+
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .result-details {
+                grid-template-columns: 1fr;
+            }
+
+            .monthly-value {
+                font-size: 27px;
+            }
+
+            .back-button {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 370px) {
+
+            .calculator-card {
+                padding: 18px 13px;
+            }
+
+            .monthly-value {
+                font-size: 24px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- Back -->
+    <a
+        href="index.html"
+        class="back-button"
+    >
+        <i class="fa-solid fa-arrow-right"></i>
+        بازگشت به قصر موبایل
+    </a>
+
+
+    <!-- Calculator -->
+    <main class="calculator-card">
+
+        <!-- Header -->
+        <div class="header">
+
+            <div class="logo-wrapper">
+
+                <img
+                    src="assets/logo.png"
+                    alt="قصر موبایل"
+                >
+
+            </div>
+
+            <h1>
+                محاسبه اقساط
+            </h1>
+
+            <p>
+                مبلغ خرید و شرایط پرداخت را وارد کنید
+                <br>
+                تا مبلغ تقریبی هر قسط محاسبه شود.
+            </p>
+
+        </div>
+
+
+        <!-- Form -->
+        <div class="form-section">
+
+
+            <!-- Price -->
+            <div class="field">
+
+                <label
+                    class="field-label"
+                    id="priceLabel"
+                >
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    مبلغ گوشی
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="price"
+                        class="money-input"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="مثلاً ۵۰,۰۰۰,۰۰۰"
+                    >
+
+                    <span class="money-unit">
+                        تومان
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product -->
+            <div class="field">
+
+                <label class="field-label">
+
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+
+                    نوع محصول
+
+                </label>
+
+
+                <div
+                    class="custom-select"
+                    id="productSelect"
+                >
+
+                    <div
+                        class="select-trigger"
+                        id="productTrigger"
+                        tabindex="0"
+                    >
+
+                        <span
+                            class="selected-icon"
+                            id="selectedProductIcon"
+                        >
+                            <i class="fa-brands fa-apple"></i>
+                        </span>
+
+                        <span
+                            class="selected-text"
+                            id="selectedProductText"
+                        >
+                            iPhone
+                        </span>
+
+                        <i
+                            class="fa-solid fa-chevron-down custom-arrow"
+                        ></i>
+
+                    </div>
+
+
+                    <div
+                        class="select-options"
+                        id="productOptions"
+                    >
+
+                        <!-- iPhone -->
+                        <div
+                            class="select-option active"
+                            data-value="iphone"
+                        >
+
+                            <span class="option-icon">
+
+                                <i class="fa-brands fa-apple"></i>
+
+                            </span>
+
+                            <span class="option-content">
+
+                                <span class="option-name">
+                                    iPhone
+                                </span>
+
+                                <span class="option-description">
+                                    گوشی اپل
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- Android -->
+                        <div
+                            class="select-option"
+                            data-value="android"
+                        >
+
+                            <span class="option-icon">
+
+                                <i class="fa-brands fa-android"></i>
+
+                            </span>
+
+                            <span class="option-content">
+
+                                <span class="option-name">
+                                    Android
+                                </span>
+
+                                <span class="option-description">
+                                    گوشی هوشمند
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- Laptop -->
+                        <div
+                            class="select-option"
+                            data-value="laptop"
+                        >
+
+                            <span class="option-icon">
+
+                                <i class="fa-solid fa-laptop"></i>
+
+                            </span>
+
+                            <span class="option-content">
+
+                                <span class="option-name">
+                                    لپ‌تاپ
+                                </span>
+
+                                <span class="option-description">
+                                    کامپیوتر همراه
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <input
+                    type="hidden"
+                    id="productType"
+                    value="iphone"
+                >
+
+            </div>
+
+
+            <!-- Customer + Months -->
+            <div class="two-columns">
+
+
+                <!-- Customer -->
+                <div class="field">
+
+                    <label class="field-label">
+
+                        <i class="fa-solid fa-user-tag"></i>
+
+                        نوع مشتری
+
+                    </label>
+
+                    <div class="normal-select-wrapper">
+
+                        <select id="customerType">
+
+                            <option value="normal">
+                                آزاد
+                            </option>
+
+                            <option value="cultural">
+                                فرهنگی
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Months -->
+                <div class="field">
+
+                    <label class="field-label">
+
+                        <i class="fa-regular fa-calendar-days"></i>
+
+                        تعداد ماه
+
+                    </label>
+
+                    <div class="normal-select-wrapper">
+
+                        <select id="months">
+
+                            <option value="1">
+                                ۱ ماه
+                            </option>
+
+                            <option value="2">
+                                ۲ ماه
+                            </option>
+
+                            <option value="3">
+                                ۳ ماه
+                            </option>
+
+                            <option value="4">
+                                ۴ ماه
+                            </option>
+
+                            <option value="5">
+                                ۵ ماه
+                            </option>
+
+                            <option value="6">
+                                ۶ ماه
+                            </option>
+
+                            <option value="7">
+                                ۷ ماه
+                            </option>
+
+                            <option value="8">
+                                ۸ ماه
+                            </option>
+
+                            <option value="9">
+                                ۹ ماه
+                            </option>
+
+                            <option value="10">
+                                ۱۰ ماه
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Down Payment -->
+            <div class="field">
+
+                <label class="field-label">
+
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+
+                    پیش‌پرداخت
+
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="downPayment"
+                        class="money-input"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="حداقل ۵۰٪ مبلغ"
+                    >
+
+                    <span class="money-unit">
+                        تومان
+                    </span>
+
+                </div>
+
+                <div class="down-payment-note">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    حداقل پیش‌پرداخت ۵۰٪ مبلغ محصول است.
+
+                </div>
+
+            </div>
+
+
+            <!-- Error -->
+            <div
+                class="error-message"
+                id="errorMessage"
+            >
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <span id="errorText"></span>
+
+            </div>
+
+
+            <!-- Button -->
+            <button
+                class="calculate-button"
+                id="calculateButton"
+                type="button"
+            >
+
+                <i class="fa-solid fa-calculator"></i>
+
+                محاسبه اقساط
+
+            </button>
+
+        </div>
+
+
+        <!-- Result -->
+        <section
+            class="result"
+            id="result"
+        >
+
+            <div class="result-header">
+
+                <div class="result-title">
+
+                    <i class="fa-solid fa-chart-simple"></i>
+
+                    نتیجه محاسبه
+
+                </div>
+
+                <div
+                    class="result-badge"
+                    id="resultProduct"
+                >
+                    iPhone
+                </div>
+
+            </div>
+
+
+            <div class="result-main">
+
+                <div class="monthly-label">
+                    مبلغ هر قسط
+                </div>
+
+                <div
+                    class="monthly-value"
+                    id="monthlyPayment"
+                >
+                    ۰
+                </div>
+
+                <div class="monthly-unit">
+                    تومان
+                </div>
+
+            </div>
+
+
+            <div class="result-details">
+
+
+                <div class="detail-box">
+
+                    <span class="detail-label">
+                        مبلغ کل خرید
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="resultPrice"
+                    >
+                        ۰ تومان
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-label">
+                        پیش‌پرداخت
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="resultDownPayment"
+                    >
+                        ۰ تومان
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-label">
+                        مبلغ باقی‌مانده
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="resultRemaining"
+                    >
+                        ۰ تومان
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-label">
+                        تعداد اقساط
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="resultMonths"
+                    >
+                        ۰ ماه
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-label">
+                        مجموع پرداخت اقساط
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="resultInstallmentTotal"
+                    >
+                        ۰ تومان
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-label">
+                        مجموع پرداخت نهایی
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="resultTotal"
+                    >
+                        ۰ تومان
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="result-note">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    مبالغ نمایش‌داده‌شده تقریبی بوده و برای اطلاع از
+                    شرایط نهایی خرید، لطفاً با قصر موبایل تماس بگیرید.
+                </span>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- Warning Confirmation Modal -->
+    <div
+        class="warning-overlay"
+        id="warningOverlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="warningTitle"
+        aria-describedby="warningText"
+    >
+
+        <div class="warning-modal">
+
+            <div class="warning-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div
+                class="warning-title"
+                id="warningTitle"
+            >
+                پیش‌پرداخت کمتر از ۵۰٪
+            </div>
+
+            <div
+                class="warning-text"
+                id="warningText"
+            >
+                پیش‌پرداخت واردشده کمتر از حداقل ۵۰٪ مبلغ محصول است.
+                اگر با همین مبلغ ادامه دهید، محاسبه بر اساس مبلغ واردشده انجام می‌شود.
+            </div>
+
+            <div class="warning-actions">
+
+                <button
+                    type="button"
+                    class="warning-button continue"
+                    id="continueCalculation"
+                >
+                    ادامه می‌دهم
+                </button>
+
+                <button
+                    type="button"
+                    class="warning-button cancel"
+                    id="editDownPayment"
+                >
+                    اصلاح مبلغ
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        <span>
+            قصر موبایل
+        </span>
+
+        ·
+
+        محاسبه‌گر اقساط
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* =====================================================
+       PRODUCT DATA
+       ===================================================== */
+
+    const productData = {
+
+        iphone: {
+
+            name: "iPhone",
+
+            label: "مبلغ گوشی",
+
+            icon:
+                '<i class="fa-brands fa-apple"></i>',
+
+            ratesType: "iphone"
+
+        },
+
+        android: {
+
+            name: "Android",
+
+            label: "مبلغ گوشی",
+
+            icon:
+                '<i class="fa-brands fa-android"></i>',
+
+            ratesType: "android"
+
+        },
+
+        laptop: {
+
+            name: "لپ‌تاپ",
+
+            label: "مبلغ لپ‌تاپ",
+
+            icon:
+                '<i class="fa-solid fa-laptop"></i>',
+
+            /*
+             * Internal calculation mapping.
+             * This is intentionally not shown in the UI.
+             */
+
+            ratesType: "iphone"
+
+        }
+
+    };
+
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const priceInput =
+        document.getElementById("price");
+
+    const downPaymentInput =
+        document.getElementById("downPayment");
+
+    const customerType =
+        document.getElementById("customerType");
+
+    const monthsSelect =
+        document.getElementById("months");
+
+    const productType =
+        document.getElementById("productType");
+
+    const priceLabel =
+        document.getElementById("priceLabel");
+
+    const productSelect =
+        document.getElementById("productSelect");
+
+    const productTrigger =
+        document.getElementById("productTrigger");
+
+    const productOptions =
+        document.getElementById("productOptions");
+
+    const selectedProductIcon =
+        document.getElementById("selectedProductIcon");
+
+    const selectedProductText =
+        document.getElementById("selectedProductText");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const errorText =
+        document.getElementById("errorText");
+
+    const calculateButton =
+        document.getElementById("calculateButton");
+
+    const result =
+        document.getElementById("result");
+
+    const warningOverlay =
+        document.getElementById("warningOverlay");
+
+    const warningText =
+        document.getElementById("warningText");
+
+    const continueCalculation =
+        document.getElementById("continueCalculation");
+
+    const editDownPayment =
+        document.getElementById("editDownPayment");
+
+
+    /* =====================================================
+       RESULT ELEMENTS
+       ===================================================== */
+
+    const monthlyPayment =
+        document.getElementById("monthlyPayment");
+
+    const resultProduct =
+        document.getElementById("resultProduct");
+
+    const resultPrice =
+        document.getElementById("resultPrice");
+
+    const resultDownPayment =
+        document.getElementById("resultDownPayment");
+
+    const resultRemaining =
+        document.getElementById("resultRemaining");
+
+    const resultMonths =
+        document.getElementById("resultMonths");
+
+    const resultInstallmentTotal =
+        document.getElementById("resultInstallmentTotal");
+
+    const resultTotal =
+        document.getElementById("resultTotal");
+
+
+    /* =====================================================
+       PERSIAN NUMBER SUPPORT
+       ===================================================== */
+
+    function normalizeDigits(value) {
+
+        if (!value) {
+            return "";
+        }
+
+        return String(value)
+
+            .replace(/[۰-۹]/g, function (digit) {
+
+                return String(
+                    digit.charCodeAt(0) - 1776
+                );
+
+            })
+
+            .replace(/[٠-٩]/g, function (digit) {
+
+                return String(
+                    digit.charCodeAt(0) - 1632
+                );
+
+            });
+
+    }
+
+
+    function parseMoney(value) {
+
+        const normalized =
+            normalizeDigits(value)
+                .replace(/[,\s٬]/g, "")
+                .replace(/[^\d]/g, "");
+
+        if (!normalized) {
+            return 0;
+        }
+
+        return Number(normalized);
+    }
+
+
+    function formatMoney(number) {
+
+        return Math.round(number)
+            .toLocaleString("fa-IR");
+
+    }
+
+
+    function formatPersianNumber(number) {
+
+        return Math.round(number)
+            .toLocaleString("fa-IR");
+
+    }
+
+
+    /* =====================================================
+       MONEY INPUT FORMATTING
+       ===================================================== */
+
+    function formatMoneyInput(input) {
+
+        let value =
+            normalizeDigits(input.value)
+                .replace(/[,\s٬]/g, "")
+                .replace(/[^\d]/g, "");
+
+        if (!value) {
+
+            input.value = "";
+
+            return;
+        }
+
+        input.value =
+            Number(value).toLocaleString("fa-IR");
+
+    }
+
+
+    priceInput.addEventListener(
+        "input",
+        function () {
+
+            formatMoneyInput(this);
+
+        }
+    );
+
+
+    downPaymentInput.addEventListener(
+        "input",
+        function () {
+
+            formatMoneyInput(this);
+
+        }
+    );
+
+
+    /* =====================================================
+       AUTO MINIMUM DOWN PAYMENT
+       ===================================================== */
+
+    priceInput.addEventListener(
+        "blur",
+        function () {
+
+            const price =
+                parseMoney(priceInput.value);
+
+            if (
+                price > 0 &&
+                !downPaymentInput.value.trim()
+            ) {
+
+                const minimum =
+                    price * 0.50;
+
+                downPaymentInput.value =
+                    formatPersianNumber(minimum);
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       PRODUCT DROPDOWN
+       ===================================================== */
+
+    productTrigger.addEventListener(
+        "click",
+        function () {
+
+            productSelect.classList.toggle("open");
+
+        }
+    );
+
+
+    productTrigger.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                productSelect.classList.toggle("open");
+
+            }
+
+            if (event.key === "Escape") {
+
+                productSelect.classList.remove("open");
+
+            }
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(".select-option")
+        .forEach(function (option) {
+
+            option.addEventListener(
+                "click",
+                function () {
+
+                    const value =
+                        this.dataset.value;
+
+                    const data =
+                        productData[value];
+
+                    productType.value =
+                        value;
+
+                    selectedProductText.textContent =
+                        data.name;
+
+                    selectedProductIcon.innerHTML =
+                        data.icon;
+
+                    priceLabel.innerHTML =
+                        '<i class="fa-solid fa-money-bill-wave"></i> ' +
+                        data.label;
+
+
+                    document
+                        .querySelectorAll(".select-option")
+                        .forEach(function (item) {
+
+                            item.classList.remove("active");
+
+                        });
+
+
+                    this.classList.add("active");
+
+                    productSelect.classList.remove("open");
+
+
+                    /*
+                     * Clear old result when product changes.
+                     */
+
+                    result.classList.remove("show");
+
+                    hideError();
+
+                }
+
+            );
+
+        });
+
+
+    /* =====================================================
+       CLOSE DROPDOWN OUTSIDE
+       ===================================================== */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                !productSelect.contains(event.target)
+            ) {
+
+                productSelect.classList.remove("open");
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       RATES
+       ===================================================== */
+
+    function getRate(
+        product,
+        customer,
+        months
+    ) {
+
+        /*
+         * Product type used internally.
+         * Laptop is mapped to the same calculation
+         * profile without displaying that information.
+         */
+
+        const calculationType =
+            productData[product].ratesType;
+
+
+        const isLongTerm =
+            months >= 7;
+
+
+        if (
+            customer === "cultural"
+        ) {
+
+            if (
+                calculationType === "iphone"
+            ) {
+
+                return isLongTerm
+                    ? 0.05
+                    : 0.045;
+
+            }
+
+            return isLongTerm
+                ? 0.045
+                : 0.04;
+
+        }
+
+
+        /*
+         * Normal / Free customer
+         */
+
+        if (
+            calculationType === "iphone"
+        ) {
+
+            return isLongTerm
+                ? 0.06
+                : 0.05;
+
+        }
+
+
+        return isLongTerm
+            ? 0.05
+            : 0.045;
+
+    }
+
+
+    /* =====================================================
+       ERROR
+       ===================================================== */
+
+    function showError(message) {
+
+        errorText.textContent =
+            message;
+
+        errorMessage.classList.add(
+            "show"
+        );
+
+    }
+
+
+    function hideError() {
+
+        errorMessage.classList.remove(
+            "show"
+        );
+
+        errorText.textContent = "";
+
+    }
+
+
+    function showWarning(message) {
+
+        warningText.textContent =
+            message;
+
+        warningOverlay.classList.add(
+            "show"
+        );
+
+        setTimeout(function () {
+
+            continueCalculation.focus();
+
+        }, 50);
+
+    }
+
+
+    function hideWarning() {
+
+        warningOverlay.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    continueCalculation.addEventListener(
+        "click",
+        function () {
+
+            hideWarning();
+
+            calculateInstallment(true);
+
+        }
+    );
+
+
+    editDownPayment.addEventListener(
+        "click",
+        function () {
+
+            hideWarning();
+
+            downPaymentInput.focus();
+
+        }
+    );
+
+
+    warningOverlay.addEventListener(
+        "click",
+        function (event) {
+
+            if (event.target === warningOverlay) {
+
+                hideWarning();
+
+                downPaymentInput.focus();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                warningOverlay.classList.contains("show")
+            ) {
+
+                hideWarning();
+
+                downPaymentInput.focus();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CALCULATE
+       ===================================================== */
+
+    function calculateInstallment(
+        allowBelowMinimum
+    ) {
+
+            hideError();
+
+
+            const price =
+                parseMoney(priceInput.value);
+
+
+            const downPayment =
+                parseMoney(
+                    downPaymentInput.value
+                );
+
+
+            const months =
+                Number(
+                    monthsSelect.value
+                );
+
+
+            const customer =
+                customerType.value;
+
+
+            const product =
+                productType.value;
+
+
+            /* -------------------------
+               VALIDATION
+            ------------------------- */
+
+
+            if (!price) {
+
+                showError(
+                    "لطفاً مبلغ محصول را وارد کنید."
+                );
+
+                priceInput.focus();
+
+                return;
+
+            }
+
+
+            if (price <= 0) {
+
+                showError(
+                    "مبلغ محصول باید بیشتر از صفر باشد."
+                );
+
+                return;
+
+            }
+
+
+            if (!downPayment) {
+
+                showError(
+                    "لطفاً مبلغ پیش‌پرداخت را وارد کنید."
+                );
+
+                downPaymentInput.focus();
+
+                return;
+
+            }
+
+
+            const minimumDownPayment =
+                price * 0.50;
+
+
+            if (
+                downPayment < minimumDownPayment &&
+                !allowBelowMinimum
+            ) {
+
+                showWarning(
+                    "پیش‌پرداخت واردشده کمتر از حداقل ۵۰٪ مبلغ محصول است. اگر با همین مبلغ ادامه دهید، محاسبه بر اساس مبلغ واردشده انجام می‌شود."
+                );
+
+                return;
+
+            }
+
+
+            if (downPayment >= price) {
+
+                showError(
+                    "مبلغ پیش‌پرداخت باید کمتر از مبلغ کل محصول باشد."
+                );
+
+                downPaymentInput.focus();
+
+                return;
+
+            }
+
+
+            const remaining =
+                price - downPayment;
+
+
+            /*
+             * Maximum financed amount
+             */
+
+            if (remaining > 100000000) {
+
+                showError(
+                    "مبلغ باقی‌مانده برای اقساط نمی‌تواند بیشتر از ۱۰۰ میلیون تومان باشد."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                months < 1 ||
+                months > 10
+            ) {
+
+                showError(
+                    "تعداد اقساط باید بین ۱ تا ۱۰ ماه باشد."
+                );
+
+                return;
+
+            }
+
+
+            /* =================================================
+               CALCULATION
+            ================================================= */
+
+
+            const rate =
+                getRate(
+                    product,
+                    customer,
+                    months
+                );
+
+
+            /*
+             * Monthly charge:
+             *
+             * remaining × rate
+             */
+
+            const monthlyFee =
+                remaining * rate;
+
+
+            /*
+             * Total charge:
+             *
+             * monthlyFee × months
+             */
+
+            const totalFee =
+                monthlyFee * months;
+
+
+            /*
+             * Total installment amount:
+             *
+             * remaining + totalFee
+             */
+
+            const totalInstallmentAmount =
+                remaining + totalFee;
+
+
+            /*
+             * Monthly installment:
+             *
+             * total installment amount / months
+             */
+
+            const monthly =
+                totalInstallmentAmount /
+                months;
+
+
+            /*
+             * Final amount paid:
+             *
+             * down payment +
+             * total installment amount
+             */
+
+            const finalTotal =
+                downPayment +
+                totalInstallmentAmount;
+
+
+            /* =================================================
+               DISPLAY RESULT
+            ================================================= */
+
+
+            monthlyPayment.textContent =
+                formatPersianNumber(monthly);
+
+
+            resultProduct.textContent =
+                productData[product].name;
+
+
+            resultPrice.textContent =
+                formatPersianNumber(price) +
+                " تومان";
+
+
+            resultDownPayment.textContent =
+                formatPersianNumber(downPayment) +
+                " تومان";
+
+
+            resultRemaining.textContent =
+                formatPersianNumber(remaining) +
+                " تومان";
+
+
+            resultMonths.textContent =
+                formatPersianNumber(months) +
+                " ماه";
+
+
+            resultInstallmentTotal.textContent =
+                formatPersianNumber(
+                    totalInstallmentAmount
+                ) +
+                " تومان";
+
+
+            resultTotal.textContent =
+                formatPersianNumber(
+                    finalTotal
+                ) +
+                " تومان";
+
+
+            result.classList.add(
+                "show"
+            );
+
+
+            /*
+             * Smooth scroll to result
+             */
+
+            setTimeout(
+                function () {
+
+                    result.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest"
+                    });
+
+                },
+                100
+            );
+
+    }
+
+
+    calculateButton.addEventListener(
+        "click",
+        function () {
+
+            calculateInstallment(false);
+
+        }
+    );
+
+
+    /* =====================================================
+       ENTER KEY
+       ===================================================== */
+
+    priceInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                downPaymentInput.focus();
+
+            }
+
+        }
+    );
+
+
+    downPaymentInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                calculateButton.click();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL STATE
+       ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            productType.value =
+                "iphone";
+
+            selectedProductText.textContent =
+                "iPhone";
+
+            selectedProductIcon.innerHTML =
+                productData.iphone.icon;
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
